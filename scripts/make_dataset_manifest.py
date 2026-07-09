@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import csv
 import random
+from collections import defaultdict
 from pathlib import Path
 
 
@@ -28,21 +29,48 @@ def split_name(index: int, total: int, train_ratio: float, val_ratio: float) -> 
     return "test"
 
 
+def assign_splits_by_label(
+    rows: list[tuple[Path, str]],
+    seed: int,
+    train_ratio: float = 0.70,
+    val_ratio: float = 0.15,
+) -> list[tuple[Path, str, str]]:
+    rng = random.Random(seed)
+    rows_by_label: dict[str, list[Path]] = defaultdict(list)
+    split_rows: list[tuple[Path, str, str]] = []
+
+    for image_path, label in rows:
+        rows_by_label[label].append(image_path)
+
+    for label in sorted(rows_by_label):
+        image_paths = rows_by_label[label][:]
+        rng.shuffle(image_paths)
+        for index, image_path in enumerate(image_paths):
+            split_rows.append(
+                (
+                    image_path,
+                    label,
+                    split_name(index, len(image_paths), train_ratio, val_ratio),
+                )
+            )
+
+    rng.shuffle(split_rows)
+    return split_rows
+
+
 def write_manifest(rows: list[tuple[Path, str]], output_path: Path, seed: int) -> None:
-    random.seed(seed)
-    shuffled = rows[:]
-    random.shuffle(shuffled)
+    split_rows = assign_splits_by_label(rows, seed)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
     with output_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=["filepath", "label", "split"])
         writer.writeheader()
-        for index, (image_path, label) in enumerate(shuffled):
+        for image_path, label, split in split_rows:
             writer.writerow(
                 {
                     "filepath": image_path.as_posix(),
                     "label": label,
-                    "split": split_name(index, len(shuffled), train_ratio=0.70, val_ratio=0.15),
+                    "split": split,
                 }
             )
 
@@ -68,4 +96,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
