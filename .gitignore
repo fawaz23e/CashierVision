@@ -11,3 +11,18 @@ reports/figures/*
 !models/.gitkeep
 !reports/figures/.gitkeep
 
+
+# Downloaded datasets (129M) -- re-download from the upstream repo, do not commit
+data/GroceryStoreDataset-master/
+
+# Personal phone photos used for ad hoc checks (12M)
+data/external/
+
+# IDE settings
+.idea/
+
+# Generated evaluation reports; regenerate with scripts/evaluate_on_manifest.py
+reports/*.json
+
+# Local working memo, not part of the project history
+CLAUDE_HANDOFF.md

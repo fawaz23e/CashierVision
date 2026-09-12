@@ -102,7 +102,7 @@ class ProduceDataset(Dataset[tuple[Tensor, int]]):
 
         if not self.samples:
             raise ValueError(f"Manifest contains no rows for split: {split}")
-
+            
     def _resolve_path(self, image_path: Path) -> Path:
         return image_path if image_path.is_absolute() else self.root_dir / image_path
 

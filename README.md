@@ -63,3 +63,49 @@ python3 scripts/validate_plu_mapping.py
 python3 -m unittest discover -s tests
 ```
 
+## Train the Baseline
+
+Start with a short check using two training batches and two validation batches:
+
+```bash
+python3 scripts/train_model.py --smoke-test
+```
+
+Then train for five epochs (five passes through the training images):
+
+```bash
+python3 scripts/train_model.py --epochs 5
+```
+
+The script loads pretrained ResNet18 weights and trains only its new final
+classification layer. It audits the manifest first, uses validation top-1 accuracy
+to select the best epoch, and leaves the test images for a later evaluation.
+Top-1 means the first guess was correct; top-3 means the correct class was among
+the first three guesses. Saved accuracies are fractions between 0 and 1.
+
+Each run saves `best_model.pt` (the best validation model), `last_checkpoint.pt`
+(the latest completed epoch, optimizer, random states, and best model), and
+`metrics.json` (training and validation results per epoch). Defaults are
+`models/resnet18_baseline/` for training and `models/resnet18_smoke/` for a smoke
+test. Smoke-test results are only a pipeline check, not model performance claims.
+Choose a fresh `--output-dir` to repeat a run; existing runs are not overwritten.
+
+To continue the same run for five more epochs:
+
+```bash
+python3 scripts/train_model.py --resume models/resnet18_baseline/last_checkpoint.pt --epochs 5
+```
+
+Resume restores the model, optimizer, epoch count, shuffle and augmentation random
+states, metrics history, and the best result so far. It keeps the saved batch size,
+learning rate, and seed. Use the same manifest; `--manifest` can specify its path.
+Checkpoints are replaced atomically after each completed epoch. If interrupted
+mid-epoch, that incomplete epoch is repeated on resume. A smoke-test checkpoint
+continues only as a smoke test. Older `best_model.pt` files lack the optimizer
+state needed to resume. Resuming does not download pretrained weights again.
+
+Use `--device cpu` to force CPU execution or `--learning-rate 0.001` to set the
+update size. The default device is CUDA, then Apple MPS, then CPU, when available.
+For an offline check, combine `--smoke-test --no-pretrained`; this uses random
+weights. The fixed seed and saved settings help reproduce runs, but results may
+vary across hardware and PyTorch versions.

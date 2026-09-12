@@ -1,0 +1,15 @@
+grocery_class,cashiervision_label,note
+Banana,banana,Exact match.
+Cantaloupe,cantaloupe,Exact match.
+Aubergine,eggplant,British/American name for the same vegetable.
+Ginger,ginger_root,Same item; our label spells out "root".
+Lemon,lemon,Exact match.
+Lime,lime,Exact match.
+Mango,mango,Exact match.
+Papaya,papaya,Exact match. No images in the official val split; see split_source column in the manifest.
+Passion-Fruit,passion_fruit,Exact match.
+Peach,peach,Exact match.
+Green-Bell-Pepper,pepper_green,Same item. No images in the official val split; see split_source column in the manifest.
+Red-Bell-Pepper,pepper_red,Same item.
+Watermelon,watermelon,Exact match.
+Satsumas,mandarin,"USER DECISION 2026-09-12: satsuma is a mandarin cultivar, so we accept it as mandarin. Not a name-for-name match."
