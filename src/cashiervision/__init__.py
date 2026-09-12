@@ -1,4 +1,3 @@
 """CashierVision reusable project code."""
 
-__all__ = ["plu"]
-
+__all__ = ["dataset", "inference", "plu"]
