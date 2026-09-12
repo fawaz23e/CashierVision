@@ -1,0 +1,31 @@
+produce_class,plu_code,plu_type,display_name,notes,source_status
+apple,4016,varies,Apple,"Common apple PLUs vary by variety; verify retailer mapping before use.",example_only
+apple,4017,varies,Apple,"Common apple PLUs vary by variety; verify retailer mapping before use.",example_only
+apple,4133,varies,Apple,"Common apple PLUs vary by variety; verify retailer mapping before use.",example_only
+avocado,4046,conventional,Avocado,"Often used for Hass avocado; retailer and size can vary.",example_only
+avocado,4225,conventional,Avocado,"Often used for large avocado; retailer and size can vary.",example_only
+banana,4011,conventional,Banana,"Common conventional banana code; verify retailer mapping before use.",example_only
+banana,94011,organic,Banana,"Organic codes may use a leading 9; verify retailer mapping before use.",example_only
+bell_pepper,4065,varies,Bell pepper,"Pepper PLUs can vary by color and retailer.",example_only
+broccoli,4060,conventional,Broccoli,"Common broccoli code; verify retailer mapping before use.",example_only
+cabbage,4069,varies,Cabbage,"Cabbage PLUs can vary by type and retailer.",example_only
+carrot,4562,conventional,Carrot,"Common carrot code; verify retailer mapping before use.",example_only
+cauliflower,4079,conventional,Cauliflower,"Common cauliflower code; verify retailer mapping before use.",example_only
+cucumber,4062,conventional,Cucumber,"Common cucumber code; verify retailer mapping before use.",example_only
+garlic,4608,conventional,Garlic,"Garlic PLUs can vary by packaging and retailer.",example_only
+grape,4023,varies,Grape,"Grape PLUs vary by color, seedless status, and packaging.",example_only
+kiwi,4030,conventional,Kiwi,"Common kiwi code; verify retailer mapping before use.",example_only
+lemon,4053,conventional,Lemon,"Common lemon code; verify retailer mapping before use.",example_only
+lettuce,4061,varies,Lettuce,"Lettuce PLUs vary by type and packaging.",example_only
+lime,4048,conventional,Lime,"Common lime code; verify retailer mapping before use.",example_only
+mango,4959,conventional,Mango,"Common mango code; verify retailer mapping before use.",example_only
+onion,4093,varies,Onion,"Onion PLUs vary by type, color, and size.",example_only
+orange,4012,varies,Orange,"Orange PLUs vary by type, size, and retailer.",example_only
+peach,4044,varies,Peach,"Peach PLUs vary by variety and retailer.",example_only
+pear,4024,varies,Pear,"Pear PLUs vary by variety and retailer.",example_only
+pineapple,4430,conventional,Pineapple,"Common pineapple code; verify retailer mapping before use.",example_only
+potato,4072,varies,Potato,"Potato PLUs vary by type and size.",example_only
+strawberry,4307,varies,Strawberry,"Often packaged; lookup may depend on package and retailer.",example_only
+tomato,4064,varies,Tomato,"Tomato PLUs vary by variety, organic status, and retailer.",example_only
+zucchini,4067,conventional,Zucchini,"Common zucchini code; verify retailer mapping before use.",example_only
+
